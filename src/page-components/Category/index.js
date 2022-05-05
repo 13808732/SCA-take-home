@@ -39,15 +39,26 @@ function Category({ categoryData }) {
   }
 
   return (
-    <Page withNav backgroundImage={backgroundImage} backgroundColor={backgroundColor}>
+    <Page
+      withNav
+      backgroundImage={backgroundImage}
+      backgroundColor={backgroundColor}
+    >
       <StyledContainer>
         <div>
           <Head>
             <title>{`${name} Podcasts | ${LISTNR_META.brandName}`}</title>
-            <meta name="title" content={`${name} Podcasts | ${LISTNR_META.brandName}`} />
+            <meta
+              name="title"
+              content={`${name} Podcasts | ${LISTNR_META.brandName}`}
+            />
             <meta name="description" content={`Listnr - ${name} Podcasts.`} />
           </Head>
-          <CategoriesContainer shows={shows} name={name} description={description} />
+          <CategoriesContainer
+            shows={shows}
+            name={name}
+            description={description}
+          />
         </div>
         <Footer />
       </StyledContainer>
@@ -56,7 +67,11 @@ function Category({ categoryData }) {
 }
 
 Category.getInitialProps = async ({ query: { slug } }, order = '') => {
-  const categoryContents = get(await getCategories([slug.toLowerCase()], order), 'categories', null);
+  const categoryContents = get(
+    await getCategories([slug.toLowerCase()], order),
+    'categories',
+    null
+  );
   const categoryData = categoryContents[0];
   return {
     categoryData,
@@ -72,15 +87,17 @@ Category.propTypes = {
     images: PropTypes.shape({
       backgroundLarge: PropTypes.shape({ url: PropTypes.string }),
     }),
-    shows: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string,
-      slug: PropTypes.string,
-      name: PropTypes.string,
-      description: PropTypes.string,
-      images: PropTypes.shape({
-        squareLarge: PropTypes.shape({ url: PropTypes.string }),
-      }),
-    })),
+    shows: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        slug: PropTypes.string,
+        name: PropTypes.string,
+        description: PropTypes.string,
+        images: PropTypes.shape({
+          squareLarge: PropTypes.shape({ url: PropTypes.string }),
+        }),
+      })
+    ),
   }),
 };
 
@@ -89,4 +106,3 @@ Category.defaultProps = {
 };
 
 export default Category;
-

@@ -12,40 +12,44 @@ import spacing from 'styling/spacing';
 import Paragraph from 'shared-components/Typography/Paragraph';
 import routes from '../../routes';
 
-const Home = ({ promotedCategories, downloadAppBanner }) => (
-  <Page withNav withFooter>
-    <Head>
-      <title>LiSTNR</title>
-      <meta name="title" content="LiSTNR" />
-      <meta name="description" content="Browse the best LiSTNR has to offer including Previews and Top Episodes" />
-    </Head>
-    <Container>
-      <Header as="h1" text="Podcast Categories" variant="xl" mb="l" />
-      <Box height="75vh">
-        { promotedCategories && (promotedCategories.map(category => (
-          <Box key={category.slug} mb={spacing.l}>
-            <Link
-              href={`${routes.category}/${category.slug}`}
-            >
-              <a>
-                <Paragraph text={category.name} variant="xl" />
-              </a>
-            </Link>
-          </Box>
-        ))) }
-      </Box>
-    </Container>
-    {downloadAppBanner && (
-      <FullWidthSection fullWidth>
-        <AppBanner
-          title={downloadAppBanner?.title}
-          description={downloadAppBanner?.description}
-          backgroundImageUrl={downloadAppBanner?.backgroundImageUrl}
+function Home({ promotedCategories, downloadAppBanner }) {
+  return (
+    <Page withNav withFooter>
+      <Head>
+        <title>LiSTNR</title>
+        <meta name="title" content="LiSTNR" />
+        <meta
+          name="description"
+          content="Browse the best LiSTNR has to offer including Previews and Top Episodes"
         />
-      </FullWidthSection>
-    )}
-  </Page>
-);
+      </Head>
+      <Container>
+        <Header as="h1" text="Podcast Categories" variant="xl" mb="l" />
+        <Box height="75vh">
+          {promotedCategories &&
+            promotedCategories.map((category) => (
+              <Box key={category.slug} mb={spacing.l}>
+                <Link href={`${routes.category}/${category.slug}`}>
+                  <a>
+                    <Paragraph text={category.name} variant="xl" />
+                  </a>
+                </Link>
+              </Box>
+            ))}
+        </Box>
+      </Container>
+      {downloadAppBanner && (
+        <FullWidthSection fullWidth>
+          <AppBanner
+            title={downloadAppBanner?.title}
+            description={downloadAppBanner?.description}
+            backgroundImageUrl={downloadAppBanner?.backgroundImageUrl}
+          />
+        </FullWidthSection>
+      )}
+    </Page>
+  );
+}
 
 Home.propTypes = {
   downloadAppBanner: shape({

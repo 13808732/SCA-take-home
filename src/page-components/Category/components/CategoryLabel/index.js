@@ -7,14 +7,20 @@ import spacing from 'src/styling/spacing';
 const StyledLabel = styled(Box)`
   display: inline-block;
   text-transform: uppercase;
-  background-color: ${props => props.theme.dark};
+  background-color: ${(props) => props.theme.dark};
   border-radius: 2px;
 `;
 
-const CategoryLabel = () => (
-  <StyledLabel mt={[80, spacing.m, spacing.m]} mb={[spacing.s, spacing.s, spacing.m]} px={spacing.xs}>
-    <Paragraph text="category" variant="s" />
-  </StyledLabel>
-);
+function CategoryLabel() {
+  return (
+    <StyledLabel
+      mt={[80, spacing.m, spacing.m]}
+      mb={[spacing.s, spacing.s, spacing.m]}
+      px={spacing.xs}
+    >
+      <Paragraph text="category" variant="s" />
+    </StyledLabel>
+  );
+}
 
 export default CategoryLabel;

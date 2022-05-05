@@ -10,18 +10,23 @@ import Global from './Global';
 
 const store = makeStore();
 
-const App = ({ Component, pageProps }) => (
-  <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      </Head>
-      <Global />
-      <BackgroundGradient />
-      <Component {...pageProps} />
-    </Provider>
-  </ThemeProvider>
-);
+function App({ Component, pageProps }) {
+  return (
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+        </Head>
+        <Global />
+        <BackgroundGradient />
+        <Component {...pageProps} />
+      </Provider>
+    </ThemeProvider>
+  );
+}
 
 App.propTypes = {
   Component: func.isRequired,
